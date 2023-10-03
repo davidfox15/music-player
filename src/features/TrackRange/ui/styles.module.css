@@ -1,0 +1,13 @@
+.trackRange {
+	height: 10px;
+}
+
+.trackRange::-webkit-slider-thumb {
+	height: 10px;
+	width: 0px;
+	background-color: #05ac6a;
+	appearance: none;
+	border-radius: 50% 0 0 50%;
+	cursor: pointer;
+	border: 0;
+}

@@ -1,0 +1,9 @@
+.main {
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color:#E3E3E3;
+}
