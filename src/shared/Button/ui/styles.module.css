@@ -1,13 +1,13 @@
 .button {
-	position: relative;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	border: 0px;
-	background-color: #0cb6734d;
-	padding: 8px;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 0px;
+    background-color: #0cb6734d;
+    padding: 8px;
 }
 
 .button:hover {
-	box-shadow: 0px 0px 5px 2px gray;
+    box-shadow: 0px 0px 5px 2px gray;
 }
