@@ -81,6 +81,7 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
                         onClick={() => {
                             setIsPlay((value) => !value)
                         }}
+                        isPlay={isPlay}
                     />
                 </li>
                 <li>

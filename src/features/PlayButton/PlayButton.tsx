@@ -3,12 +3,17 @@ import Image from 'next/image'
 
 interface IPlayButton {
     onClick: () => void
+    isPlay: boolean
 }
 
-export default function PlayButton({ onClick }: IPlayButton) {
+export default function PlayButton({ onClick, isPlay }: IPlayButton) {
     return (
         <Button onClick={onClick}>
-            <Image src="play.svg" alt="play/pause" fill={true} />
+            {isPlay ? (
+                <Image src="pause.svg" alt="pause" fill={true} />
+            ) : (
+                <Image src="play.svg" alt="play" fill={true} />
+            )}
         </Button>
     )
 }
