@@ -24,3 +24,17 @@
     grid-template-rows: 33% 33% 33%;
     align-items: center;
 }
+
+.title {
+    /* Обрезаем длинные названия*/
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Версия с префиксом для WebKit */
+    -webkit-box-orient: vertical;
+    display: box; /* Это для старых версий */
+    line-clamp: 2; /* Стандартная версия на будущее */
+    box-orient: vertical;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 100%;
+}

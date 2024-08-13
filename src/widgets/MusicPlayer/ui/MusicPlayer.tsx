@@ -96,7 +96,9 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
                 <>
                     <div className={styles.middlePanel}>
                         <VolumeRange audio={audio} />
-                        <h2>{tracks[trackIndex].title}</h2>
+                        <h2 className={styles.title}>
+                            {tracks[trackIndex].title}
+                        </h2>
                         <TrackRange audio={audio} />
                     </div>
                     <Album
