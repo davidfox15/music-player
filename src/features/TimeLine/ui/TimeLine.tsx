@@ -3,11 +3,11 @@ import { Range } from '@/shared/Range'
 import { Time } from '@/shared/Time'
 import styles from './styles.module.css'
 
-interface ITrackRange {
+interface ITimeLine {
     audio: HTMLAudioElement
 }
 
-export default function TrackRange({ audio }: ITrackRange) {
+export default function TimeLine({ audio }: ITimeLine) {
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
 

@@ -8,7 +8,7 @@ import { Album } from '@/features/Album'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import logo from '../../../../public/logo.svg'
 import { VolumeRange } from '@/features/VolumeRange'
-import { TrackRange } from '@/features/TrackRange'
+import { TimeLine } from '@/features/TimeLine'
 
 interface ITrack {
     title: string
@@ -99,7 +99,7 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
                         <h2 className={styles.title}>
                             {tracks[trackIndex].title}
                         </h2>
-                        <TrackRange audio={audio} />
+                        <TimeLine audio={audio} />
                     </div>
                     <Album
                         isPlay={isPlay}
