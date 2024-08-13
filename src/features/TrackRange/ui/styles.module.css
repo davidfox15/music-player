@@ -11,3 +11,13 @@
     cursor: pointer;
     border: 0;
 }
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.timeWrapper {
+    display: flex;
+    justify-content: space-between;
+}
