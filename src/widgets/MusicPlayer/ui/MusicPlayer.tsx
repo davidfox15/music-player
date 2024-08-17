@@ -5,7 +5,13 @@ import PlayButton from '@/features/PlayButton/PlayButton'
 import NextButton from '@/features/NextButton/NextButton'
 import PrevButton from '@/features/PrevButton/PrevButton'
 import { Album } from '@/features/Album'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import {
+    useCallback,
+    useEffect,
+    useLayoutEffect,
+    useRef,
+    useState,
+} from 'react'
 import logo from '../../../../public/logo.svg'
 import { VolumeRange } from '@/features/VolumeRange'
 import { TimeLine } from '@/features/TimeLine'
@@ -25,23 +31,23 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
     const [trackIndex, setTrackIndex] = useState(0)
     const [audio] = useState<HTMLAudioElement>(new Audio(tracks[0].src))
 
-    const nexTrack = () => {
+    const nextTrack = useCallback(() => {
         setTrackIndex((cur) => (cur === tracks.length - 1 ? 0 : ++cur))
-    }
+    }, [setTrackIndex, tracks.length])
 
-    const prevTrack = () => {
+    const prevTrack = useCallback(() => {
         setTrackIndex((cur) => (cur === 0 ? tracks.length - 1 : --cur))
-    }
+    }, [setTrackIndex, tracks.length])
 
     useLayoutEffect(() => {
         audio.addEventListener(
             'ended',
             (event) => {
-                setTrackIndex((cur) => (cur === tracks.length ? 0 : cur++))
+                nextTrack()
             },
             false
         )
-    }, [audio, tracks.length])
+    }, [audio, nextTrack])
 
     useEffect(() => {
         audio.pause()
@@ -70,11 +76,7 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
         >
             <ul className={styles.sidePanel}>
                 <li>
-                    <NextButton
-                        onClick={function (): void {
-                            nexTrack()
-                        }}
-                    />
+                    <NextButton onClick={nextTrack} />
                 </li>
                 <li>
                     <PlayButton
@@ -85,11 +87,7 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
                     />
                 </li>
                 <li>
-                    <PrevButton
-                        onClick={function (): void {
-                            prevTrack()
-                        }}
-                    />
+                    <PrevButton onClick={prevTrack} />
                 </li>
             </ul>
             {audio && (
