@@ -8,7 +8,7 @@ interface IVolumeRange {
 }
 
 export default function VolumeRange({ audio }: IVolumeRange) {
-    const [volume, setVolume] = useState(1)
+    const [volume, setVolume] = useState(0.5)
     useEffect(() => {
         audio.volume = volume
     }, [audio, volume])

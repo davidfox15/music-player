@@ -5,13 +5,7 @@ import PlayButton from '@/features/PlayButton/PlayButton'
 import NextButton from '@/features/NextButton/NextButton'
 import PrevButton from '@/features/PrevButton/PrevButton'
 import { Album } from '@/features/Album'
-import {
-    useCallback,
-    useEffect,
-    useLayoutEffect,
-    useRef,
-    useState,
-} from 'react'
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import logo from '../../../../public/logo.svg'
 import { VolumeRange } from '@/features/VolumeRange'
 import { TimeLine } from '@/features/TimeLine'
@@ -40,20 +34,21 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
     }, [setTrackIndex, tracks.length])
 
     useLayoutEffect(() => {
-        audio.addEventListener(
-            'ended',
-            (event) => {
-                nextTrack()
-            },
-            false
-        )
+        if (audio) {
+            audio.addEventListener('ended', nextTrack, false)
+            return () => {
+                audio.removeEventListener('ended', nextTrack, false)
+            }
+        }
     }, [audio, nextTrack])
 
     useEffect(() => {
-        audio.pause()
-        audio.src = tracks[trackIndex].src
-        audio.play()
-    }, [audio, trackIndex, tracks])
+        if (audio && isPlay) {
+            audio.pause()
+            audio.src = tracks[trackIndex].src
+            audio.play()
+        }
+    }, [audio, trackIndex, tracks, isPlay])
 
     useEffect(() => {
         if (audio) {
