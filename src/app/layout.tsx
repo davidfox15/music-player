@@ -1,6 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import bg from '../../public/background.png'
+
+import styles from './app.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +19,14 @@ export default function RootLayout({
 }) {
     return (
         <html lang="ru">
-            <body className={inter.className}>{children}</body>
+            <body className={inter.className}>
+                <main
+                    className={styles.main}
+                    style={{ backgroundImage: `url(${bg.src})` }}
+                >
+                    {children}
+                </main>
+            </body>
         </html>
     )
 }

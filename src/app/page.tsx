@@ -1,17 +1,22 @@
-import styles from './app.module.css'
-import bg from '../../public/background.png'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import styles from './app.module.css'
+
 export default function Home() {
     return (
-        <main
-            className={styles.main}
-            style={{ backgroundImage: `url(${bg.src})` }}
-        >
-            <Link href="/player">
+        <div style={{ display: 'flex', gap: '20px' }}>
+            <Link href="/player" className={styles.blur}>
                 <Image src="play.svg" alt="play" width={150} height={150} />
             </Link>
-        </main>
+            <Link href="/loader" className={styles.blur}>
+                <Image
+                    src="add-circle.svg"
+                    alt="loader"
+                    width={150}
+                    height={150}
+                />
+            </Link>
+        </div>
     )
 }
