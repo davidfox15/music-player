@@ -1,12 +1,12 @@
 .wrapper {
-    border-radius: 8px;
+    border-radius: var(--br-m);
     width: 580px;
     height: 200px;
-    box-shadow: 0px 0px 8px 2px #1c274c;
+    box-shadow: 0 0 8px 2px #1c274c;
     background-color: #fffdfd;
     position: relative;
-    padding: 10px;
-    padding-right: 0px;
+    padding: var(--p-m);
+    padding-right: 0;
     display: grid;
     grid-template-columns: 12% 58% 30%;
 }
@@ -26,14 +26,12 @@
 }
 
 .title {
-    /* Обрезаем длинные названия*/
-    display: -webkit-box;
+    /* Обрезаем длинные названия */
     -webkit-line-clamp: 2; /* Версия с префиксом для WebKit */
     -webkit-box-orient: vertical;
     display: box; /* Это для старых версий */
     line-clamp: 2; /* Стандартная версия на будущее */
     box-orient: vertical;
-
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 100%;

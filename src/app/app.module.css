@@ -8,3 +8,10 @@
     background-color: #e3e3e3;
 }
 
+.blur {
+    background: rgb(0 0 0 / 3%);
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 50%);
+    backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}

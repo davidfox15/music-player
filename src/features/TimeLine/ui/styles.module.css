@@ -4,7 +4,7 @@
 
 .trackRange::-webkit-slider-thumb {
     height: 10px;
-    width: 0px;
+    width: 0;
     background-color: #05ac6a;
     appearance: none;
     border-radius: 50% 0 0 50%;

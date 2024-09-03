@@ -1,7 +1,7 @@
 .range {
     height: 3px;
     width: 100%;
-    background: rgb(188, 188, 188);
+    background: rgb(188 188 188);
     border-radius: 8px;
     outline: none;
     appearance: none;
