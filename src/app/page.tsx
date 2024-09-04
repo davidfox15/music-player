@@ -1,28 +1,22 @@
+import Link from 'next/link'
+import Image from 'next/image'
+
 import styles from './app.module.css'
-import bg from '../../public/background.png'
-import { MusicPlayer } from '@/widgets/MusicPlayer'
 
 export default function Home() {
-	return (
-		<main className={styles.main} style={{ backgroundImage: `url(${bg.src})` }}>
-			<MusicPlayer
-				tracks={[
-					{
-						title: 'Азамат Мусагалиев, Therr Maitz – Ничего не говори (LAB с Антоном Беляевым)',
-						src: 'song.mp3',
-						img: '/song.png'
-					},
-					{
-						title: 'Sweet Home Alabama 2018',
-						src: 'Sweet_Home_Alabama.mp3',
-						img: '/sweet home alabama.png'
-					},
-					{
-						title: 'Filatov & Karas, GAYAZOV$ BROTHER$ - Пошла жара',
-						src: 'Filatov_Karas_GAYAZOV_BROTHER_-_Poshla_zharamp3.mp3'
-					}
-				]}
-			/>
-		</main>
-	)
+    return (
+        <div style={{ display: 'flex', gap: '20px' }}>
+            <Link href="/player" className={styles.blur}>
+                <Image src="play.svg" alt="play" width={150} height={150} />
+            </Link>
+            <Link href="/loader" className={styles.blur}>
+                <Image
+                    src="add-circle.svg"
+                    alt="loader"
+                    width={150}
+                    height={150}
+                />
+            </Link>
+        </div>
+    )
 }

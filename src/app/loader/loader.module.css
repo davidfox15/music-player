@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-green);
+    gap: 10px;
+    padding: var(--p-m);
+    border-radius: var(--br-m);
+}
