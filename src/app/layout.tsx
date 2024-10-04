@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import bg from '../../public/background.png'
 
 import styles from './app.module.css'
+import HomeButton from '@/features/HomeButton/HomeButton'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,6 +25,9 @@ export default function RootLayout({
                     className={styles.main}
                     style={{ backgroundImage: `url(${bg.src})` }}
                 >
+                    <div className={styles['home-link-position']}>
+                        <HomeButton />
+                    </div>
                     {children}
                 </main>
             </body>

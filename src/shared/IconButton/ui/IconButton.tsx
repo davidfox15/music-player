@@ -3,7 +3,7 @@ import { MouseEventHandler } from 'react'
 import styles from './IconButton.module.css'
 
 interface IIconButton {
-    onClick: MouseEventHandler<HTMLButtonElement>
+    onClick?: MouseEventHandler<HTMLButtonElement>
     children: React.ReactNode
     className?: string
 }

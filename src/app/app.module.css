@@ -14,3 +14,9 @@
     box-shadow: 0 10px 20px rgb(0 0 0 / 50%);
     backdrop-filter: blur(6px);
 }
+
+.home-link-position {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}

@@ -1,12 +1,7 @@
 import React from 'react'
 
-import styles from './loader.module.css'
-import { FileLoader } from '@/features/FileLoader'
+import { FileLoader } from '@/widgets/FileLoader'
 
 export default function LoaderPage() {
-    return (
-        <div className={styles.container}>
-            <FileLoader />
-        </div>
-    )
+    return <FileLoader />
 }
