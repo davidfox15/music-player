@@ -1,4 +1,4 @@
-import { Button } from '@/shared/Button'
+import { IconButton } from '@/shared/IconButton'
 import Image from 'next/image'
 
 interface IPrevButton {
@@ -7,8 +7,8 @@ interface IPrevButton {
 
 export default function PrevButton({ onClick }: IPrevButton) {
     return (
-        <Button onClick={onClick}>
-            <Image src="rewind-back.svg" alt="next" fill={true} />
-        </Button>
+        <IconButton onClick={onClick}>
+            <Image src="rewind-back.svg" alt="prev" fill={true} />
+        </IconButton>
     )
 }

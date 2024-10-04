@@ -1,19 +1,20 @@
 import classNames from 'classnames'
 import styles from './styles.module.css'
+import { MouseEventHandler } from 'react'
 
 interface IButton {
-    onClick: () => void
+    onClick: MouseEventHandler<HTMLButtonElement>
     children: React.ReactNode
+    className?: string
 }
 
-export default function Button({ onClick, children }: IButton) {
+export default function Button({ onClick, className = '', children }: IButton) {
     return (
-        <button className={classNames(styles.button)} onClick={onClick}>
-            <div
-                style={{ position: 'relative', width: '100%', height: '100%' }}
-            >
-                {children}
-            </div>
+        <button
+            className={classNames(styles.button, className)}
+            onClick={onClick}
+        >
+            {children}
         </button>
     )
 }
