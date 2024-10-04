@@ -1,14 +1,14 @@
 'use client'
 
-import styles from './styles.module.css'
-import PlayButton from '@/features/PlayButton/PlayButton'
-import NextButton from '@/features/NextButton/NextButton'
-import PrevButton from '@/features/PrevButton/PrevButton'
 import { Album } from '@/features/Album'
+import NextButton from '@/features/NextButton/NextButton'
+import PlayButton from '@/features/PlayButton/PlayButton'
+import PrevButton from '@/features/PrevButton/PrevButton'
+import { TimeLine } from '@/features/TimeLine'
+import { VolumeRange } from '@/features/VolumeRange'
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import logo from '../../../../public/logo.svg'
-import { VolumeRange } from '@/features/VolumeRange'
-import { TimeLine } from '@/features/TimeLine'
+import styles from './styles.module.css'
 
 interface ITrack {
     title: string

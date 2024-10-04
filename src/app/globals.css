@@ -1,5 +1,7 @@
 :root {
+    --bg-white: #fffdfd;
     --bg-green: #2a7c5b;
+    --primary-green: #0cb6734d;
     --br-m: 8px;
     --p-m: 10px;
 }
