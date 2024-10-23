@@ -69,8 +69,10 @@ export async function uploadAudio(formData: FormData) {
     }
 }
 
+export type Playlist = { audio: string; title: string }[]
+
 export async function getPlaylist() {
     'use server'
-    const playlist = JSON.parse(await readFilePromise()) || []
+    const playlist: Playlist = JSON.parse(await readFilePromise()) || []
     return playlist
 }

@@ -2,10 +2,10 @@
 
 import { MusicPlayer } from '@/widgets/MusicPlayer'
 import { useEffect, useState } from 'react'
-import { getPlaylist } from '../actions'
+import { getPlaylist, type Playlist } from '../actions'
 
 export default function Player() {
-    const [tracks, setTracks] = useState([])
+    const [tracks, setTracks] = useState<Playlist>([])
 
     useEffect(() => {
         getPlaylist().then((res) => {
@@ -30,7 +30,11 @@ export default function Player() {
                     title: 'Filatov & Karas, GAYAZOV$ BROTHER$ - Пошла жара',
                     src: 'Filatov_Karas_GAYAZOV_BROTHER_-_Poshla_zharamp3.mp3',
                 },
-                ...tracks,
+                ...tracks.map((track) => ({
+                    ...track,
+                    src: `/uploadAudio/${track.audio}`,
+                    img: '/song.png',
+                })),
             ]}
         />
     )
