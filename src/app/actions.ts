@@ -34,7 +34,13 @@ export async function uploadAudio(formData: FormData) {
         const buffer = await audioFile.arrayBuffer()
         const audioBuffer = Buffer.from(buffer)
 
-        writeFile(`./public/${uniqId}.mp3`, audioBuffer, (err) => {
+        // Check is upload dir exist
+        var uploadAudioDir = './public/uploadAudio'
+        if (!existsSync(uploadAudioDir)) {
+            mkdirSync(uploadAudioDir, { recursive: true })
+        }
+
+        writeFile(`${uploadAudioDir}/${uniqId}.mp3`, audioBuffer, (err) => {
             if (err) throw err
             console.log(`Audio file ${uniqId} has been saved!`)
         })
