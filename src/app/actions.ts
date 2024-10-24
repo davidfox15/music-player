@@ -1,6 +1,7 @@
 'use server'
-import { writeFile, readFile } from 'node:fs'
+import { writeFile, readFile, existsSync, mkdirSync } from 'node:fs'
 import { v4 as uuidv4 } from 'uuid'
+import { printLog, printError } from './utils'
 
 enum Status {
     ok = 'ok',
@@ -25,41 +26,52 @@ export async function uploadAudio(formData: FormData) {
         if (audioFile.type !== 'audio/mpeg') {
             throw new Error('Audio file is not mp3 (audio/mpeg)')
         }
-
-        // TODO: create JSON file with list of songs
         const title = formData.get('title') as string
         // const image = formData.get('image') as File
-        const uniqId = uuidv4()
-
         const buffer = await audioFile.arrayBuffer()
         const audioBuffer = Buffer.from(buffer)
-
         // Check is upload dir exist
         var uploadAudioDir = './public/uploadAudio'
         if (!existsSync(uploadAudioDir)) {
             mkdirSync(uploadAudioDir, { recursive: true })
         }
-
+        // Save audio with uniq id
+        const uniqId = uuidv4()
         writeFile(`${uploadAudioDir}/${uniqId}.mp3`, audioBuffer, (err) => {
-            if (err) throw err
-            console.log(`Audio file ${uniqId} has been saved!`)
+            if (err) {
+                printError('write audio error, ' + err)
+                throw err
+            }
+            printLog(`Audio file has been saved! (${uniqId})`)
         })
-
+        // Get already exist playlist
         const playlist = JSON.parse(await readFilePromise())
-        console.log('playlist', playlist)
+        // Update playlist with new upload audio
         playlist.push({
             audio: uniqId + '.mp3',
             title: title,
         })
+        // Write updated playlist
         writeFile('playlist.json', JSON.stringify(playlist), 'utf8', (err) => {
-            if (err) throw err
-            console.log('JSON file has been saved!')
+            if (err) {
+                printError('writeFile playlist.json, ' + err)
+                throw err
+            }
+            printLog('Playlist has been updated!')
         })
-    } catch (error) {
-        console.error(error)
-        return {
-            status: Status.error,
-            message: error,
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            printError(error.message)
+            return {
+                status: Status.error,
+                message: error?.message,
+            }
+        } else {
+            printError('Unknown error: ' + error)
+            return {
+                status: Status.error,
+                message: 'Unknown error',
+            }
         }
     }
 

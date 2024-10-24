@@ -33,3 +33,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Upload audio
+/public/uploadAudio/*
+playlist.json
+
+TODO.md
