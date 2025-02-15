@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FileLoader } from '@/widgets/FileLoader'
+import { FileLoader } from '@/features/FileLoader'
 
 export default function LoaderPage() {
     return <FileLoader />

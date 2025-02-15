@@ -24,14 +24,14 @@ export async function uploadAudio(formData: FormData) {
 
     try {
         if (audioFile.type !== 'audio/mpeg') {
-            throw new Error('Audio file is not mp3 (audio/mpeg)')
+            throw new Error('File is not audio/mpeg')
         }
         const title = formData.get('title') as string
         // const image = formData.get('image') as File
         const buffer = await audioFile.arrayBuffer()
         const audioBuffer = Buffer.from(buffer)
         // Check is upload dir exist
-        var uploadAudioDir = './public/uploadAudio'
+        let uploadAudioDir = './public/uploadAudio'
         if (!existsSync(uploadAudioDir)) {
             mkdirSync(uploadAudioDir, { recursive: true })
         }
