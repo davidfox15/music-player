@@ -6,7 +6,13 @@ import PlayButton from '@/features/PlayButton/PlayButton'
 import PrevButton from '@/features/PrevButton/PrevButton'
 import { TimeLine } from '@/features/TimeLine'
 import { VolumeRange } from '@/features/VolumeRange'
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
+import {
+    useCallback,
+    useEffect,
+    useLayoutEffect,
+    useRef,
+    useState,
+} from 'react'
 import logo from '../../../../public/logo.svg'
 import styles from './styles.module.css'
 
@@ -21,7 +27,8 @@ interface IMusicPlayer {
 }
 
 export default function MusicPlayer({ tracks }: IMusicPlayer) {
-    const [isPlay, setIsPlay] = useState(false)
+    const [isPlay, setIsPlay] = useState<boolean>()
+    const prevTrackIndex = useRef<number>()
     const [trackIndex, setTrackIndex] = useState(0)
     const [audio] = useState<HTMLAudioElement>(new Audio(tracks[0].src))
 
@@ -35,30 +42,37 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
 
     useLayoutEffect(() => {
         if (audio) {
+            audio.addEventListener('pause', () => {
+                setIsPlay(false)
+            })
+            audio.addEventListener('play', () => {
+                setIsPlay(true)
+            })
+        }
+    }, [audio])
+
+    useLayoutEffect(() => {
+        if (audio) {
             audio.addEventListener('ended', nextTrack, false)
-            return () => {
-                audio.removeEventListener('ended', nextTrack, false)
-            }
         }
     }, [audio, nextTrack])
 
     useEffect(() => {
-        if (audio && isPlay) {
+        if (
+            audio &&
+            // Мы не запускаем трек если пользователь не взаимодействовал со страницей
+            isPlay !== undefined &&
+            prevTrackIndex.current !== trackIndex
+        ) {
             audio.pause()
             audio.src = tracks[trackIndex].src
             audio.play()
         }
-    }, [audio, trackIndex, tracks, isPlay])
+    }, [audio, tracks, trackIndex, isPlay])
 
     useEffect(() => {
-        if (audio) {
-            if (isPlay) {
-                audio.play()
-            } else {
-                audio.pause()
-            }
-        }
-    }, [audio, isPlay])
+        prevTrackIndex.current = trackIndex
+    }, [trackIndex])
 
     return (
         <div
@@ -76,7 +90,11 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
                 <li>
                     <PlayButton
                         onClick={() => {
-                            setIsPlay((value) => !value)
+                            if (isPlay) {
+                                audio.pause()
+                            } else {
+                                audio.play()
+                            }
                         }}
                         isPlay={isPlay}
                     />
