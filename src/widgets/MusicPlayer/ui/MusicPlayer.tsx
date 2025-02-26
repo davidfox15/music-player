@@ -96,7 +96,7 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
                                 audio.play()
                             }
                         }}
-                        isPlay={isPlay}
+                        isPlay={!!isPlay}
                     />
                 </li>
                 <li>
@@ -113,7 +113,7 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
                         <TimeLine audio={audio} />
                     </div>
                     <Album
-                        isPlay={isPlay}
+                        isPlay={!!isPlay}
                         image={tracks[trackIndex].img || '/test-album.png'}
                         title={'test album'}
                     />
