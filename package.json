@@ -6,7 +6,8 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint",
+        "lint": "npx eslint src/**/*",
+        "lint:fix": "npx eslint src/**/* --fix",
         "format": "prettier --write ."
     },
     "dependencies": {
@@ -17,16 +18,21 @@
         "uuid": "^10.0.0"
     },
     "devDependencies": {
+        "@eslint/js": "^9.21.0",
         "@trivago/prettier-plugin-sort-imports": "^5.2.2",
         "@types/node": "latest",
         "@types/react": "latest",
         "@types/react-dom": "latest",
         "@types/uuid": "^10.0.0",
-        "eslint": "latest",
+        "eslint": "^8.57.1",
         "eslint-config-next": "latest",
+        "eslint-plugin-react": "^7.37.4",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "globals": "^16.0.0",
         "prettier": "3.3.3",
         "stylelint": "^16.9.0",
         "stylelint-config-standard": "^36.0.1",
-        "typescript": "latest"
+        "typescript": "latest",
+        "typescript-eslint": "^8.26.0"
     }
 }
