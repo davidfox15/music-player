@@ -1,0 +1,15 @@
+.imgLoader {
+    border: 2px dashed var(--bg-green);
+    border-radius: 8px;
+    text-align: center;
+    padding: 15px;
+    color: var(--bg-green);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--bg-white);
+}
+
+.imgLoader:hover {
+    outline: 10px solid var(--bg-white);
+    scale: 0.95;
+}

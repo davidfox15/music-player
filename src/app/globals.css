@@ -1,8 +1,9 @@
 :root {
     --bg-white: #fffdfd;
     --bg-green: #2a7c5b;
-    --primary-green: #0cb6734d;
+    --primary-green: #c4e8d4;
     --br-m: 8px;
+    --p-s: 5px;
     --p-m: 10px;
 }
 
@@ -15,6 +16,10 @@
 ul,
 ul li {
     list-style: none;
+}
+
+input[type='file'] {
+    display: none;
 }
 
 /* :root {

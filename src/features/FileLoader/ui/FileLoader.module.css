@@ -1,10 +1,66 @@
-.container {
+.wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: var(--bg-green);
+    justify-content: space-between;
     gap: 10px;
-    padding: var(--p-m);
     border-radius: var(--br-m);
+    width: 580px;
+    min-height: 200px;
+    box-shadow: 0 0 8px 2px #1c274c;
+    background-color: var(--bg-white);
+    padding: var(--p-m);
+    padding-right: 0;
+}
+
+.content {
+    width: 50%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.status {
+    text-align: center;
+    width: 100%;
+    border-radius: var(--br-m);
+    padding: var(--p-s);
+    border: 1px solid;
+}
+
+.status__error {
+    color: red;
+    border-color: red;
+}
+
+.status__saved {
+    color: green;
+    border-color: green;
+}
+
+.status__loading {
+    color: yellow;
+    border-color: yellow;
+}
+
+.button {
+    margin-left: 10px;
+    /* border: 1px solid var(--bg-green); */
+}
+
+.input {
+    outline: none;
+    border: 1px solid var(--bg-green);
+    padding: var(--p-s);
+    border-radius: var(--br-m);
+    margin-bottom: 10px;
+}
+
+.dropZone {
+    width: 100%;
+    margin-bottom: 10px;
 }
