@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { MouseEventHandler } from 'react'
+
 import styles from './IconButton.module.css'
 
 interface IIconButton {

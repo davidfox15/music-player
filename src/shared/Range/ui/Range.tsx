@@ -1,6 +1,7 @@
-import { ChangeEvent, useEffect, useRef } from 'react'
-import styles from './styles.module.css'
 import classNames from 'classnames'
+import { ChangeEvent, useEffect, useRef } from 'react'
+
+import styles from './styles.module.css'
 
 interface IRange {
     className?: string

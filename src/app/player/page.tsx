@@ -2,7 +2,8 @@
 
 import { MusicPlayer } from '@/widgets/MusicPlayer'
 import { useEffect, useState } from 'react'
-import { getPlaylist, type Playlist } from '../actions'
+
+import { type Playlist, getPlaylist } from '../actions'
 
 export default function Player() {
     const [tracks, setTracks] = useState<Playlist>([])

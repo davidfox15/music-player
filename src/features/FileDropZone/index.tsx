@@ -1,6 +1,7 @@
-import { type FC, useRef } from 'react'
-import styles from './styles.module.css'
 import classNames from 'classnames'
+import { type FC, useRef } from 'react'
+
+import styles from './styles.module.css'
 
 interface IFileDropZoneProps {
     className?: string

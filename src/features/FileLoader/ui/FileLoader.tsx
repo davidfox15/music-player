@@ -1,13 +1,12 @@
 'use client'
 
-import React, { useRef } from 'react'
-
-import classNames from 'classnames'
-import styles from './FileLoader.module.css'
 import { uploadAudio } from '@/app/actions'
-
 import { FileDropZone } from '@/features/FileDropZone'
 import { Button } from '@/shared/Button'
+import classNames from 'classnames'
+import React, { useRef } from 'react'
+
+import styles from './FileLoader.module.css'
 
 enum LoadStatusEnum {
     LOADING = 'loading',

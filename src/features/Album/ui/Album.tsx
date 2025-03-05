@@ -1,9 +1,10 @@
 'use client'
 
 import classNames from 'classnames'
-import styles from './styles.module.css'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+
+import styles from './styles.module.css'
 
 interface IAlbum {
     isPlay: boolean

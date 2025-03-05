@@ -1,7 +1,8 @@
 import { Range } from '@/shared/Range'
 import Image from 'next/image'
-import styles from './styles.module.css'
 import { useEffect, useState } from 'react'
+
+import styles from './styles.module.css'
 
 interface IVolumeRange {
     audio: HTMLAudioElement

@@ -1,10 +1,10 @@
-import './globals.css'
+import HomeButton from '@/features/HomeButton/HomeButton'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import bg from '../../public/background.png'
 
+import bg from '../../public/background.png'
 import styles from './app.module.css'
-import HomeButton from '@/features/HomeButton/HomeButton'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 

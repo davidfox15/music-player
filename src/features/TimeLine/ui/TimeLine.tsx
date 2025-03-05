@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
 import { Range } from '@/shared/Range'
 import { Time } from '@/shared/Time'
+import { useEffect, useState } from 'react'
+
 import styles from './styles.module.css'
 
 interface ITimeLine {
