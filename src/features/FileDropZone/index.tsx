@@ -11,7 +11,7 @@ interface IFileDropZoneProps {
 export function FileDropZone({ inputName, className }: IFileDropZoneProps) {
     const inputFileRef = useRef<HTMLInputElement>(null)
 
-    const openFileLoader = (event) => {
+    const openFileLoader = () => {
         if (!inputFileRef.current) {
             return
         }

@@ -1,18 +1,15 @@
 import { Range } from '@/shared/Range'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import styles from './styles.module.css'
 
 interface IVolumeRange {
-    audio: HTMLAudioElement
+    setPlayerVolume: (volume: number) => void
 }
 
-export default function VolumeRange({ audio }: IVolumeRange) {
-    const [volume, setVolume] = useState(0.5)
-    useEffect(() => {
-        audio.volume = volume
-    }, [audio, volume])
+export default function VolumeRange({ setPlayerVolume }: IVolumeRange) {
+    const [volume, setVolume] = useState(1)
 
     return (
         <div className={styles.wrapper}>
@@ -20,6 +17,7 @@ export default function VolumeRange({ audio }: IVolumeRange) {
             <Range
                 value={volume}
                 onChange={(event) => {
+                    setPlayerVolume(Number(event.target.value))
                     setVolume(Number(event.target.value))
                 }}
                 min={0}

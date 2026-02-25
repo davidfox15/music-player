@@ -2,7 +2,7 @@
 
 import classNames from 'classnames'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 import styles from './styles.module.css'
 

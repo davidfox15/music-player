@@ -11,7 +11,7 @@ enum Status {
 }
 
 const readFilePromise: () => Promise<string> = () =>
-    new Promise((resolve, reject) => {
+    new Promise((resolve) => {
         readFile('playlist.json', 'utf8', (error, data) => {
             if (error) {
                 resolve('[]')
@@ -33,7 +33,7 @@ export async function uploadAudio(formData: FormData) {
         const buffer = await audioFile.arrayBuffer()
         const audioBuffer = Buffer.from(buffer)
         // Check is upload dir exist
-        let uploadAudioDir = './public/uploadAudio'
+        const uploadAudioDir = './public/uploadAudio'
         if (!existsSync(uploadAudioDir)) {
             mkdirSync(uploadAudioDir, { recursive: true })
         }

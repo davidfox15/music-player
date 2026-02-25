@@ -1,39 +1,28 @@
 import { Range } from '@/shared/Range'
 import { Time } from '@/shared/Time'
-import { useEffect, useState } from 'react'
 
 import styles from './styles.module.css'
 
 interface ITimeLine {
-    audio: HTMLAudioElement
+    duration: number
+    time: number
+    setTime: (time: number) => void
 }
 
-export default function TimeLine({ audio }: ITimeLine) {
-    const [duration, setDuration] = useState(0)
-    const [currentTime, setCurrentTime] = useState(0)
-
-    useEffect(() => {
-        audio.addEventListener('loadeddata', () => {
-            setDuration(audio.duration)
-        })
-        audio.addEventListener('timeupdate', () => {
-            setCurrentTime(audio.currentTime)
-        })
-    }, [audio])
-
+export default function TimeLine({ duration, time, setTime }: ITimeLine) {
     return (
         <div className={styles.wrapper}>
             <Range
-                value={currentTime}
+                value={time}
                 onChange={(event) => {
-                    audio.currentTime = Number(event.target.value)
+                    setTime(Number(event.target.value))
                 }}
                 min={0}
                 max={duration}
                 className={styles.trackRange}
             />
             <div className={styles.timeWrapper}>
-                <Time seconds={currentTime} />
+                <Time seconds={time} />
                 <Time seconds={duration} />
             </div>
         </div>

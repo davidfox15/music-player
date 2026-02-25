@@ -6,74 +6,29 @@ import PlayButton from '@/features/PlayButton/PlayButton'
 import PrevButton from '@/features/PrevButton/PrevButton'
 import { TimeLine } from '@/features/TimeLine'
 import { VolumeRange } from '@/features/VolumeRange'
-import {
-    useCallback,
-    useEffect,
-    useLayoutEffect,
-    useRef,
-    useState,
-} from 'react'
 
 import logo from '../../../../public/logo.svg'
+import { ITrack, usePlayer } from '../model/usePlayer'
 import styles from './styles.module.css'
-
-interface ITrack {
-    title: string
-    src: string
-    img?: string
-}
 
 interface IMusicPlayer {
     tracks: ITrack[]
 }
 
 export default function MusicPlayer({ tracks }: IMusicPlayer) {
-    const [isPlay, setIsPlay] = useState<boolean>()
-    const prevTrackIndex = useRef<number>()
-    const [trackIndex, setTrackIndex] = useState(0)
-    const [audio] = useState<HTMLAudioElement>(new Audio(tracks[0].src))
-
-    const nextTrack = useCallback(() => {
-        setTrackIndex((cur) => (cur === tracks.length - 1 ? 0 : ++cur))
-    }, [setTrackIndex, tracks.length])
-
-    const prevTrack = useCallback(() => {
-        setTrackIndex((cur) => (cur === 0 ? tracks.length - 1 : --cur))
-    }, [setTrackIndex, tracks.length])
-
-    useLayoutEffect(() => {
-        if (audio) {
-            audio.addEventListener('pause', () => {
-                setIsPlay(false)
-            })
-            audio.addEventListener('play', () => {
-                setIsPlay(true)
-            })
-        }
-    }, [audio])
-
-    useLayoutEffect(() => {
-        if (audio) {
-            audio.addEventListener('ended', nextTrack, false)
-        }
-    }, [audio, nextTrack])
-
-    useEffect(() => {
-        if (
-            audio &&
-            // Мы не запускаем трек если пользователь не взаимодействовал со страницей
-            isPlay !== undefined &&
-            prevTrackIndex.current !== trackIndex
-        ) {
-            audio.pause()
-            audio.src = tracks[trackIndex].src
-            audio.play()
-        }
-    }, [audio, tracks, trackIndex, isPlay])
-
-    useEffect(() => {
-        prevTrackIndex.current = trackIndex
-    }, [trackIndex])
+    const {
+        isPlay,
+        play,
+        pause,
+        nextTrack,
+        prevTrack,
+        setVolume,
+        time,
+        setTime,
+        duration,
+        title,
+        img,
+    } = usePlayer(tracks)
 
     return (
         <div
@@ -92,9 +47,9 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
                     <PlayButton
                         onClick={() => {
                             if (isPlay) {
-                                audio.pause()
+                                pause()
                             } else {
-                                audio.play()
+                                play()
                             }
                         }}
                         isPlay={!!isPlay}
@@ -104,22 +59,22 @@ export default function MusicPlayer({ tracks }: IMusicPlayer) {
                     <PrevButton onClick={prevTrack} />
                 </li>
             </ul>
-            {audio && (
-                <>
-                    <div className={styles.middlePanel}>
-                        <VolumeRange audio={audio} />
-                        <h2 className={styles.title}>
-                            {tracks[trackIndex].title}
-                        </h2>
-                        <TimeLine audio={audio} />
-                    </div>
-                    <Album
-                        isPlay={!!isPlay}
-                        image={tracks[trackIndex].img || '/test-album.png'}
-                        title={'test album'}
+            <>
+                <div className={styles.middlePanel}>
+                    <VolumeRange setPlayerVolume={setVolume} />
+                    <h2 className={styles.title}>{title}</h2>
+                    <TimeLine
+                        duration={duration}
+                        time={time}
+                        setTime={setTime}
                     />
-                </>
-            )}
+                </div>
+                <Album
+                    isPlay={!!isPlay}
+                    image={img || '/test-album.png'}
+                    title={'test album'}
+                />
+            </>
         </div>
     )
 }

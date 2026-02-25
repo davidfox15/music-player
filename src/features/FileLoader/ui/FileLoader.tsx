@@ -4,7 +4,7 @@ import { uploadAudio } from '@/app/actions'
 import { FileDropZone } from '@/features/FileDropZone'
 import { Button } from '@/shared/Button'
 import classNames from 'classnames'
-import React, { useRef } from 'react'
+import React, { FormEvent, useRef } from 'react'
 
 import styles from './FileLoader.module.css'
 
@@ -20,7 +20,7 @@ export function FileLoader() {
     const [loadStatus, setLoadStatus] = React.useState<LoadStatus>(null)
     const formRef = useRef<HTMLFormElement>(null)
 
-    const load = (event: any) => {
+    const load = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         if (!formRef.current) {
             return
