@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { type FC, useRef } from 'react'
+import { useRef } from 'react'
 
 import styles from './styles.module.css'
 

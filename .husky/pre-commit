@@ -1,0 +1,20 @@
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+BLUE=$(tput setaf 4)
+RESET=$(tput sgr0)
+
+echo "\n${GREEN}PRE-COMMIT HOOK ${RESET}"
+
+echo "\n${BLUE}- Run format cached (staged) files ${RESET}\n"
+
+pnpm exec prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
+
+git update-index --again
+
+echo "\n${BLUE}- Run lint ${RESET}"
+
+pnpm run lint
+
+echo "\n${BLUE}- Run compile typescript ${RESET}"
+
+pnpm tsc

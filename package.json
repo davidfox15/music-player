@@ -6,9 +6,10 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "npx eslint src/**/*",
-        "lint:fix": "npx eslint src/**/* --fix",
-        "format": "prettier --write ."
+        "lint": "eslint src && stylelint \"src/**/*.{css,scss}\"",
+        "lint:fix": "eslint src --fix && stylelint \"src/**/*.{css,scss}\" --fix",
+        "format": "prettier --write .",
+        "prepare": "husky"
     },
     "dependencies": {
         "classnames": "^2.3.2",
@@ -24,13 +25,15 @@
         "@types/react": "latest",
         "@types/react-dom": "latest",
         "@types/uuid": "^10.0.0",
-        "eslint": "^8.57.1",
+        "eslint": "^10.0.2",
         "eslint-config-next": "latest",
         "eslint-plugin-react": "^7.37.4",
         "eslint-plugin-react-hooks": "^5.2.0",
         "globals": "^16.0.0",
+        "husky": "^9.1.7",
         "prettier": "3.3.3",
         "stylelint": "^16.9.0",
+        "stylelint-config-css-modules": "^4.6.0",
         "stylelint-config-standard": "^36.0.1",
         "typescript": "latest",
         "typescript-eslint": "^8.26.0"

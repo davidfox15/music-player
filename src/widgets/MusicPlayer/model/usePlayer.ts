@@ -2,6 +2,7 @@ import {
     useCallback,
     useEffect,
     useLayoutEffect,
+    useMemo,
     useRef,
     useState,
 } from 'react'
@@ -18,8 +19,11 @@ export const usePlayer = (tracks: ITrack[]) => {
     const [isPlay, setIsPlay] = useState<boolean>()
     const [duration, setDuration] = useState(0)
     const [time, setTimeState] = useState(0)
+    const [shufle, setShufle] = useState(false)
 
-    const prevTrackIndex = useRef<number>()
+    const prevTrackIndex = useRef<number>(tracks.length ? tracks.length - 1 : 0)
+    const isNextTrackExist = useMemo(() => tracks.length !== 1, [tracks])
+    const isPrevTrackExist = useMemo(() => tracks.length !== 1, [tracks])
 
     const nextTrack = useCallback(() => {
         setTrackIndex((cur) => (cur === tracks.length - 1 ? 0 : ++cur))
@@ -28,6 +32,10 @@ export const usePlayer = (tracks: ITrack[]) => {
     const prevTrack = useCallback(() => {
         setTrackIndex((cur) => (cur === 0 ? tracks.length - 1 : --cur))
     }, [setTrackIndex, tracks.length])
+
+    const toggleShufle = useCallback(() => {
+        if (shufle) setShufle(false)
+    }, [])
 
     const pause = () => {
         if (audio) audio.pause()
@@ -107,8 +115,12 @@ export const usePlayer = (tracks: ITrack[]) => {
         time,
         setTime,
         nextTrack,
+        isNextTrackExist,
         prevTrack,
+        isPrevTrackExist,
         title: tracks[trackIndex].title,
         img: tracks[trackIndex].img,
+        shufle,
+        toggleShufle,
     }
 }

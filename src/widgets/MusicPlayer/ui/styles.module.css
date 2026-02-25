@@ -31,7 +31,6 @@
     -webkit-box-orient: vertical;
     display: box; /* Это для старых версий */
     line-clamp: 2; /* Стандартная версия на будущее */
-    box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 100%;
